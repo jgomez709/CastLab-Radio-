@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  app:
+    image: php:8.3-fpm
+    container_name: demo_app
+    working_dir: /var/www/html
+    volumes:
+      - .:/var/www/html
+    networks:
+      - demo_network
+    depends_on:
+      - db
+    command: bash -c "apt-get update && apt-get install -y libpng-dev libjpeg-dev libfreetype6-dev zlib1g-dev libzip-dev && docker-php-ext-configure gd --with-freetype --with-jpeg && docker-php-ext-install bcmath gd pdo_mysql zip && php-fpm"
+
+  webserver:
+    image: nginx:latest
+    container_name: demo_webserver
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/html
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+      - ./docker/nginx/conf.d/fastcgi_params:/etc/nginx/snippets/fastcgi_params
+    depends_on:
+      - app
+    networks:
+      - demo_network
+
+  db:
+    image: mysql:8.0
+    container_name: demo_db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: 5407814Jagv
+      MYSQL_DATABASE: radio_db
+      MYSQL_USER: jgomez
+      MYSQL_PASSWORD: 5407814Jagv
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - demo_network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: demo_phpmyadmin
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: 5407814Jagv
+    networks:
+      - demo_network
+    depends_on:
+      - db
+
+networks:
+  demo_network:
+
+volumes:
+  dbdata:
