@@ -1,17 +1,17 @@
-# Despliegue de CastLab con Docker
+# CastLab Deployment with Docker
 
-Este proyecto contiene la configuración necesaria para desplegar **CastLab** utilizando contenedores Docker.
+This project contains the necessary configuration to deploy **CastLab** using Docker containers.
 
-## ⚠️ Importante:
-Este repositorio **no** incluye el código fuente del sistema **CastLab**, sino únicamente los archivos `docker-compose` necesarios para construir las imágenes y desplegar el sistema. Siéntase libre de usar esta configuración; solo debe descargar los archivos y colocarlos en la carpeta raíz de su instalación de **CastLab**.
+## ⚠️ Important:
+This repository **does not** include the source code of the **CastLab** system, but only the necessary `docker-compose` files to build the images and deploy the system. Feel free to use this configuration; you just need to download the files and place them in the root directory of your **CastLab** system.
 
-## Requisitos de CastLab (Versión 3.0):
+## CastLab Requirements (Version 3.0):
 
-Esta configuración ha sido probada con la versión **3.0** de **CastLab**, la cual tiene los siguientes requisitos:
+This setup has been tested with **CastLab** version **3.0**, which has the following requirements:
 
 - **PHP** 8.3
-- **MySQL** 8.0+ o **MariaDB** 10.6+
-- Extensiones PHP requeridas:
+- **MySQL** 8.0+ or **MariaDB** 10.6+
+- Required PHP extensions:
   - BCMath
   - Ctype
   - cURL
@@ -30,16 +30,16 @@ Esta configuración ha sido probada con la versión **3.0** de **CastLab**, la c
   - Hash
   - Session
   - Zip
-- Funciones habilitadas:
+- Enabled functions:
   - `allow_url_fopen()`
   - `file_get_contents()`
 
 ## Framework:
-Esta versión trabaja con **Laravel 11**. Todos estos requisitos han sido tomados en cuenta para la generación de los archivos `docker-compose`.
+This version works with **Laravel 11**. All these requirements have been considered for the generation of the `docker-compose` files.
 
-## Uso:
-1. Clona este repositorio en la carpeta raíz de tu sistema **CastLab**.
-2. Ejecuta los contenedores utilizando el archivo `docker-compose.yml` con el siguiente comando:
+## Usage:
+1. Clone this repository into the root directory of your **CastLab** system.
+2. Run the containers using the `docker-compose.yml` file with the following command:
 
    ```bash
    docker-compose up -d
