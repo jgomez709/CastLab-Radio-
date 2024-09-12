@@ -2,8 +2,6 @@
 
 This project contains the necessary configuration to deploy **CastLab** using Docker containers.
 
-This project contains the necessary configuration to deploy **CastLab** using Docker containers.
-
 ## ⚠️ Important:
 This repository **does not** include the source code of the **CastLab** system, but only the necessary `docker-compose` files to build the images and deploy the system. Feel free to use this configuration; you just need to download the files and place them in the root directory of your **CastLab** system.
 
